@@ -63,5 +63,16 @@ namespace Safely
         {
             return (o == null || !o.ContainsKey(key)) ? (failEvaluator != null ? failEvaluator() : default(TResult)) : o[key];
         }
+        
+        public static TResult Let<TInput, TResult>(this TInput o, Func<TInput, TResult> evaluator, TResult failValue)
+            where TInput : class
+        {
+            return (o == null) ? failValue : evaluator(o);
+        }
+
+        public static TResult Let<TKey, TResult>(this IDictionary<TKey, TResult> o, TKey key, TResult failValue)
+        {
+            return (o == null || !o.ContainsKey(key)) ? failValue : o[key];
+        }
     }
 }
