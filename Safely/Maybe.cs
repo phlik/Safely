@@ -43,7 +43,11 @@ namespace Safely
             where TInput : class
         {
             if (o == null) return null;
-            o.AsParallel().ForAll(action);
+            foreach (var item in o)
+            {
+                action(item);
+            }
+            //o.AsParallel().ForAll(action);
             return o;
         }
 
