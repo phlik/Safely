@@ -46,8 +46,7 @@ namespace Safely
             foreach (var item in o)
             {
                 action(item);
-            }
-            //o.AsParallel().ForAll(action);
+            }            
             return o;
         }
 
